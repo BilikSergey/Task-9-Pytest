@@ -20,7 +20,10 @@ jobs:
 
     - name: Install pipenv
       run: pip install pipenv
-
+      
+    - name: Install faker (hotfix)
+      run: pipenv run pip install faker
+    
     - name: Install dependencies from Pipfile
       run: pipenv install --dev
 
