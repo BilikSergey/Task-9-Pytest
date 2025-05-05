@@ -1,0 +1,57 @@
+{
+    "register_user": {
+      "email": "test_user91@gmail.com",
+      "password": "qQ1!qwe123"
+    },
+    "valid_user": {
+      "email": "test_user92@gmail.com",
+      "password": "qQ1!qwe123"
+    },
+    "url": {
+      "test_cases": "https://automationexercise.com/test_cases",
+      "products": "https://automationexercise.com/products",
+      "products_details_1": "https://automationexercise.com/product_details/1",
+      "cart": "https://automationexercise.com/view_cart",
+      "polo_page": "https://automationexercise.com/brand_products/Polo",
+      "h&m_page": "https://automationexercise.com/brand_products/H&M"
+    },
+    "details_of_wares": {
+      "name": "Blue Top",
+      "category": "Category: Women > Tops",
+      "price": "Rs. 500",
+      "availability": "Availability: In Stock",
+      "condition": "Condition: New",
+      "brand": "Brand: Polo"
+    },
+    "details_of_wares_2": {
+      "name": "Men Tshirt",
+      "price": "Rs. 400"
+    },
+    "messages": {
+      "card_congrats": "Congratulations! Your order has been confirmed!",
+      "carousel": "Full-Fledged practice website for Automation Engineers"
+    },
+    "wares_of_polo": {
+      "ware_of_polo_1": "Blue Top",
+      "ware_of_polo_2": "Fancy Green Top",
+      "ware_of_polo_3": "Green Side Placket Detail T-Shirt",
+      "ware_of_polo_4": "Premium Polo T-Shirts",
+      "ware_of_polo_5": "Soft Stretch Jeans",
+      "ware_of_polo_6": "Grunt Blue Slim Fit Jeans"
+    },
+    "wares_of_h&m": {
+      "ware_of_h&m_1": "Men Tshirt",
+      "ware_of_h&m_2": "Summer White Top",
+      "ware_of_h&m_3": "Pure Cotton V-Neck T-Shirt",
+      "ware_of_h&m_4": "Pure Cotton Neon Green Tshirt",
+      "ware_of_h&m_5": "Regular Fit Straight Jeans"
+    },
+    "names_of_categories": {
+      "dresses": "Women - Dress Products",
+      "tshirts": "Men - Tshirts Products",
+      "polo": "Brand - Polo Products",
+      "h&m": "Brand - H&M Products"
+
+    }
+  }
+  
