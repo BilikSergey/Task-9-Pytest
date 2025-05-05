@@ -23,7 +23,10 @@ jobs:
       
     - name: Install faker (hotfix)
       run: pipenv run pip install faker
-    
+
+    - name: Install allure-pytest (hotfix)
+      run: pipenv install allure-pytest
+
     - name: Install dependencies from Pipfile
       run: pipenv install --dev
 
