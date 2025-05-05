@@ -21,10 +21,10 @@ jobs:
     - name: Install pipenv
       run: pip install pipenv
       
-    - name: Install faker (hotfix)
+    - name: Install faker
       run: pipenv run pip install faker
 
-    - name: Install allure-pytest (hotfix)
+    - name: Install allure-pytest
       run: pipenv install allure-pytest
 
     - name: Install dependencies from Pipfile
@@ -37,6 +37,13 @@ jobs:
       id: run_tests
       run: |
         pipenv run pytest --alluredir=allure-results || echo "tests_failed=true" >> $GITHUB_ENV
+
+    - name: Install Allure commandline
+      run: |
+        wget https://github.com/allure-framework/allure2/releases/download/2.17.3/allure-2.17.3.tgz
+        tar -zxvf allure-2.17.3.tgz
+        sudo mv allure-2.17.3 /opt/allure
+        sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
 
     - name: Generate Allure report
       if: always()
