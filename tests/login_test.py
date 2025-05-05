@@ -33,15 +33,6 @@ def test_verify_correct_login(test_before_each, login_user, main_page, user_data
         expect(main_page.form_with_entry_message).to_contain_text("Logged in as")
         allure.attach(page.screenshot(), name="logged_in_message", attachment_type=allure.attachment_type.PNG)
 
-    # Uncomment if you want to test account deletion:
-    # with allure.step("Click delete account"):
-    #     main_page.click_delete_button()
-    #     allure.attach(page.screenshot(), name="clicked_delete", attachment_type=allure.attachment_type.PNG)
-
-    # with allure.step("Verify account deleted"):
-    #     expect(main_page.form_account_deleted).to_be_visible()
-    #     allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
-
 def test_verify_incorrect_login(test_before_each, login_user, fake, page):
     with allure.step("Attempt login with incorrect credentials"):
         login_user.login(fake.email(), fake.password())

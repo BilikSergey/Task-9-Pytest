@@ -3,7 +3,6 @@ import allure
 import os
 from playwright.sync_api import expect
 
-
 @pytest.fixture
 def test_before_each(main_page, page):
     with allure.step("Visit main page"):
@@ -17,7 +16,6 @@ def test_before_each(main_page, page):
     with allure.step("Verify slider is visible"):
         expect(main_page.slider).to_be_visible()
         allure.attach(page.screenshot(), name="slider_visible", attachment_type=allure.attachment_type.PNG)
-
 
 def test_product_page(test_before_each, page, product_page, url_for_pages, details_of_wares):
     with allure.step("Click Products button"):
@@ -49,7 +47,6 @@ def test_product_page(test_before_each, page, product_page, url_for_pages, detai
         expect(product_page.product_information).to_contain_text(details_of_wares["brand"])
         allure.attach(page.screenshot(), name="product_information", attachment_type=allure.attachment_type.PNG)
 
-
 def test_search_product(test_before_each, page, product_page, url_for_pages, details_of_wares):
     with allure.step("Click Products button"):
         product_page.click_button_products()
@@ -72,7 +69,6 @@ def test_search_product(test_before_each, page, product_page, url_for_pages, det
         expect(product_page.form_of_product_information).to_contain_text(details_of_wares["price"])
         allure.attach(page.screenshot(), name="search_results", attachment_type=allure.attachment_type.PNG)
 
-
 def test_verify_subscription_cart(test_before_each, page, fake, main_page, product_page):
     with allure.step("Click Cart button"):
         product_page.click_button_cart()
@@ -93,7 +89,6 @@ def test_verify_subscription_cart(test_before_each, page, fake, main_page, produ
     with allure.step("Verify successful subscription message"):
         expect(main_page.successful_message_subscribed).to_be_visible()
         allure.attach(page.screenshot(), name="successful_subscription", attachment_type=allure.attachment_type.PNG)
-
 
 def test_add_product_to_cart(test_before_each, page, product_page, details_of_wares, details_of_wares_2):
     with allure.step("Click Products button"):
@@ -125,7 +120,6 @@ def test_add_product_to_cart(test_before_each, page, product_page, details_of_wa
         expect(product_page.cart_quantity_2).to_contain_text("1")
         allure.attach(page.screenshot(), name="cart_products", attachment_type=allure.attachment_type.PNG)
 
-
 def test_verify_product_quantity_in_cart(test_before_each, page, product_page, details_of_wares, url_for_pages):
     with allure.step("Click View Product button"):
         product_page.click_button_view_ware()
@@ -155,7 +149,6 @@ def test_verify_product_quantity_in_cart(test_before_each, page, product_page, d
         expect(product_page.form_of_product_at_cart_1).to_contain_text(details_of_wares["price"])
         expect(product_page.cart_quantity_1).to_contain_text("4")
         allure.attach(page.screenshot(), name="verify_quantity_in_cart", attachment_type=allure.attachment_type.PNG)
-
 
 def test_place_order_register_while_checkout(test_before_each, page, product_page, main_page, url_for_pages, register_user, fake, messages):
     with allure.step("Add product to cart and view cart"):
@@ -220,7 +213,6 @@ def test_place_order_register_while_checkout(test_before_each, page, product_pag
         expect(main_page.form_account_deleted).to_be_visible()
         allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
 
-
 def test_place_order_register_before_checkout(test_before_each, page, product_page, main_page, url_for_pages, register_user, fake, messages):
     with allure.step("Click Sign Up/Login button to register new user"):
         main_page.click_button_sign_up_login()
@@ -275,7 +267,6 @@ def test_place_order_register_before_checkout(test_before_each, page, product_pa
         expect(main_page.form_account_deleted).to_be_visible()
         allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
 
-
 def test_place_order_login_before_checkout(test_before_each, page, product_page, main_page, url_for_pages, login_user, fake, messages, user_data):
     with allure.step("Click Sign Up/Login button to login user"):
         main_page.click_button_sign_up_login()
@@ -313,7 +304,6 @@ def test_place_order_login_before_checkout(test_before_each, page, product_page,
         expect(product_page.form_order_congrats).to_contain_text(messages["card_congrats"])
         allure.attach(page.screenshot(), name="order_congrats", attachment_type=allure.attachment_type.PNG)
 
-
 def test_remove_products_from_cart(test_before_each, page, product_page, url_for_pages):
     with allure.step("Add product to cart and view cart"):
         product_page.click_add_to_cart_1()
@@ -330,7 +320,6 @@ def test_remove_products_from_cart(test_before_each, page, product_page, url_for
         expect(product_page.form_of_product_at_cart_1).not_to_be_visible()
         allure.attach(page.screenshot(), name="empty_cart", attachment_type=allure.attachment_type.PNG)
 
-
 def test_view_category_products(test_before_each, page, product_page, names_of_categories):
     with allure.step("Verify and view Women category products"):
         expect(product_page.form_category).to_be_enabled()
@@ -342,7 +331,6 @@ def test_view_category_products(test_before_each, page, product_page, names_of_c
         product_page.click_button_men_category()
         expect(product_page.title_of_category).to_have_text(names_of_categories["tshirts"])
         allure.attach(page.screenshot(), name="men_category", attachment_type=allure.attachment_type.PNG)
-
 
 def test_view_cart_brand_products(test_before_each, page, product_page, wares_of_polo, names_of_categories, url_for_pages, wares_of_h_and_m):
     with allure.step("View Polo brand products"):
@@ -360,6 +348,7 @@ def test_view_cart_brand_products(test_before_each, page, product_page, wares_of
         expect(product_page.title_of_category).to_contain_text(names_of_categories["h&m"])
         expect(product_page.form_product_of_polo).to_contain_text(wares_of_h_and_m["ware_of_h&m_1"])
         allure.attach(page.screenshot(), name="hm_products", attachment_type=allure.attachment_type.PNG)
+
 def test_search_products_and_verify_cart_after_login(test_before_each, page, product_page, details_of_wares, user_data, url_for_pages, login_user, main_page):
     with allure.step("Click on Products button and verify products page"):
         product_page.click_button_products()
@@ -391,7 +380,6 @@ def test_search_products_and_verify_cart_after_login(test_before_each, page, pro
         expect(product_page.cart_quantity_1).to_contain_text("1")
         allure.attach(page.screenshot(), name="cart_after_login", attachment_type=allure.attachment_type.PNG)
 
-
 def test_add_review_on_product(test_before_each, page, product_page, fake, url_for_pages):
     with allure.step("Navigate to product page and verify review section"):
         product_page.click_button_products()
@@ -406,7 +394,6 @@ def test_add_review_on_product(test_before_each, page, product_page, fake, url_f
         expect(product_page.message_successful_review).to_be_visible()
         allure.attach(page.screenshot(), name="review_submitted", attachment_type=allure.attachment_type.PNG)
 
-
 def test_add_to_cart_from_recommended_items(test_before_each, page, product_page, details_of_wares):
     with allure.step("Scroll down and verify recommended items section"):
         page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
@@ -420,7 +407,6 @@ def test_add_to_cart_from_recommended_items(test_before_each, page, product_page
         expect(product_page.form_of_product_at_cart_1).to_contain_text(details_of_wares["price"])
         expect(product_page.cart_quantity_1).to_contain_text("1")
         allure.attach(page.screenshot(), name="cart_after_recommended_add", attachment_type=allure.attachment_type.PNG)
-
 
 def test_verify_address_details_in_checkout_page(test_before_each, page, main_page, register_user, fake, product_page, url_for_pages, messages):
     with allure.step("Register a new user and add product to cart"):
@@ -454,7 +440,6 @@ def test_verify_address_details_in_checkout_page(test_before_each, page, main_pa
         main_page.click_delete_button()
         expect(main_page.form_account_deleted).to_be_visible()
         allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
-
 
 def test_download_invoice_after_purchase_order(test_before_each, page, main_page, register_user, fake, product_page, url_for_pages, messages):
     with allure.step("Add product to cart and proceed to checkout"):

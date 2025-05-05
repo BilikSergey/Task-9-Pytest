@@ -36,6 +36,12 @@ class Register_user:
         self.button_submit_register.click()
 
     def add_data_about_account(self) -> None:
+        self.page.evaluate("""
+            const ad = document.querySelector('ins.adsbygoogle');
+            if (ad) {
+                ad.remove();
+            }
+        """)
         self.input_password.type(self.fake.password())
         self.selector_days.select_option(value='1')
         self.selector_months.select_option(value='1')

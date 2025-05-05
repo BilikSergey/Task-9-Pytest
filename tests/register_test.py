@@ -2,7 +2,6 @@ import pytest
 import allure
 from playwright.sync_api import expect
 
-
 @pytest.fixture
 def test_before_each(main_page, page):
     with allure.step("Visit main page"):
@@ -24,7 +23,6 @@ def test_before_each(main_page, page):
     with allure.step("Verify Sign Up form is visible"):
         expect(main_page.sign_up_form).to_be_visible()
         allure.attach(page.screenshot(), name="sign_up_form_visible", attachment_type=allure.attachment_type.PNG)
-
 
 def test_verify_correct_register_and_delete(test_before_each, main_page, register_user, fake, page):
     with allure.step("Register new user"):
@@ -62,7 +60,6 @@ def test_verify_correct_register_and_delete(test_before_each, main_page, registe
     with allure.step("Click Continue after deletion"):
         register_user.click_continue_button()
         allure.attach(page.screenshot(), name="continue_after_delete", attachment_type=allure.attachment_type.PNG)
-
 
 def test_verify_correct_email_for_registration(test_before_each, register_user, fake, user_data, page):
     with allure.step("Attempt to register with existing email"):

@@ -9,8 +9,6 @@ def test_before_each(main_page):
         expect(main_page.header).to_be_visible()
         expect(main_page.slider).to_be_visible()
 
-@allure.title("Contact Us Page: Submit contact form")
-@allure.description("Verifies that the user can access the contact form, fill it, submit it, and return to the homepage.")
 def test_contact_us_page(test_before_each, basic_pages, fake, page):
     with allure.step("Click 'Contact Us' button"):
         basic_pages.click_contact_us_button()
@@ -32,8 +30,6 @@ def test_contact_us_page(test_before_each, basic_pages, fake, page):
         basic_pages.click_home_button()
         allure.attach(page.screenshot(), name="returned_home", attachment_type=allure.attachment_type.PNG)
 
-@allure.title("Test Cases Page: Navigate and verify")
-@allure.description("Checks that the Test Cases page opens correctly and matches the expected URL.")
 def test_test_cases_page(test_before_each, page, basic_pages, url_for_pages):
     with allure.step("Click 'Test Cases' button"):
         basic_pages.click_button_test_cases()
@@ -43,8 +39,6 @@ def test_test_cases_page(test_before_each, page, basic_pages, url_for_pages):
         expect(page).to_have_url(url_for_pages["test_cases"])
         allure.attach(page.screenshot(), name="verified_url", attachment_type=allure.attachment_type.PNG)
 
-@allure.title("Home Page: Verify subscription feature")
-@allure.description("Scrolls to the bottom, subscribes with email, and checks success message.")
 def test_verify_subscription_home(test_before_each, page, fake, main_page):
     with allure.step("Scroll to bottom of the page"):
         page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
@@ -62,8 +56,6 @@ def test_verify_subscription_home(test_before_each, page, fake, main_page):
         expect(main_page.successful_message_subscribed).to_be_visible()
         allure.attach(page.screenshot(), name="subscription_success", attachment_type=allure.attachment_type.PNG)
 
-@allure.title("Scroll with Arrow: Scroll down and up using arrow button")
-@allure.description("Scrolls to the bottom, uses scroll-up arrow, and checks content is visible at the top.")
 def test_verify_scroll_up_using_arrow_button_and_scroll_down_functionality(test_before_each, page, main_page, basic_pages, messages):
     with allure.step("Scroll to bottom of the page"):
         page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
@@ -86,8 +78,6 @@ def test_verify_scroll_up_using_arrow_button_and_scroll_down_functionality(test_
         expect(basic_pages.form_carousel_inner).to_contain_text(messages["carousel"])
         allure.attach(page.screenshot(), name="carousel_visible", attachment_type=allure.attachment_type.PNG)
 
-@allure.title("Scroll Without Arrow: Scroll down and manually back up")
-@allure.description("Tests scrolling down and manually up without using the arrow, and verifies top content.")
 def test_verify_scroll_up_without_arrow_button_and_scroll_down_functionality(test_before_each, page, main_page, basic_pages, messages):
     with allure.step("Scroll to bottom of the page"):
         page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
