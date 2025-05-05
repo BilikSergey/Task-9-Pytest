@@ -1,0 +1,30 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "playwright._impl._errors.TimeoutError: Locator.type: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"xpath=(//*[@id=\\\"password\\\"])\")",
+      "children" : [ {
+        "name" : "test_verify_correct_register_and_delete[chromium]",
+        "uid" : "356841f44a4841a3",
+        "parentUid" : "c7a04ff2950a1208a156a196d03c662e",
+        "status" : "broken",
+        "time" : {
+          "start" : 1746444029493,
+          "stop" : 1746444059927,
+          "duration" : 30434
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "newPassed" : false,
+        "newBroken" : false,
+        "retriesCount" : 0,
+        "retriesStatusChange" : false,
+        "parameters" : [ "'chromium'" ]
+      } ],
+      "uid" : "c7a04ff2950a1208a156a196d03c662e"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}
