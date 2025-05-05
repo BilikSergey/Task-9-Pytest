@@ -1,0 +1,62 @@
+name: Playwright Tests with Allure and Slack
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install pipenv
+      run: pip install pipenv
+
+    - name: Install dependencies from Pipfile
+      run: pipenv install --dev
+
+    - name: Install Playwright browsers
+      run: pipenv run playwright install
+
+    - name: Run Playwright tests with Allure
+      id: run_tests
+      run: |
+        pipenv run pytest --alluredir=allure-results || echo "tests_failed=true" >> $GITHUB_ENV
+
+    - name: Generate Allure report
+      if: always()
+      run: |
+        pip install allure-commandline
+        allure generate allure-results -o allure-report --clean
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+        publish_branch: report
+        commit_message: deploy allure report
+
+    - name: Notify Slack
+      if: always()
+      run: |
+        if [[ "${{ job.status }}" == "success" ]]; then
+          STATUS="✅ All tests passed"
+        else
+          STATUS="❌ Some tests failed"
+        fi
+
+        curl -X POST -H 'Content-type: application/json' \
+        --data "{\"text\": \"$STATUS in *${{ github.repository }}* on branch *${{ github.ref_name }}*\n🔗 Allure report: https://raw.githack.com/${{ github.repository }}/report/index.html\"}" \
+        ${{ secrets.SLACK_WEBHOOK_URL }}
+  
+      
