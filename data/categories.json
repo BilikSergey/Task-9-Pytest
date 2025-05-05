@@ -1,30 +1,5 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
   "name" : "categories",
-  "children" : [ {
-    "name" : "Product defects",
-    "children" : [ {
-      "name" : "AssertionError: Locator expected to be visible\nActual value: hidden \nCall log:\n  - LocatorAssertions.to_be_visible with timeout 5000ms\n  - waiting for locator(\"xpath=(//*[@class=\\\"status alert alert-success\\\"])\")\n    9 × locator resolved to <div class=\"status alert alert-success\"></div>\n      - unexpected value \"hidden\"",
-      "children" : [ {
-        "name" : "Contact Us Page: Submit contact form",
-        "uid" : "d44b73a3b9e23dd0",
-        "parentUid" : "a6ac5be2e8f12c6c9c16146ace74d17a",
-        "status" : "failed",
-        "time" : {
-          "start" : 1746444348057,
-          "stop" : 1746444357790,
-          "duration" : 9733
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "newPassed" : false,
-        "newBroken" : false,
-        "retriesCount" : 0,
-        "retriesStatusChange" : false,
-        "parameters" : [ "'chromium'" ]
-      } ],
-      "uid" : "a6ac5be2e8f12c6c9c16146ace74d17a"
-    } ],
-    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
-  } ]
+  "children" : [ ]
 }
