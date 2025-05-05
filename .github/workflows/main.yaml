@@ -3,7 +3,7 @@ name: Playwright Tests with Allure and Slack
 on:
   push:
     branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
