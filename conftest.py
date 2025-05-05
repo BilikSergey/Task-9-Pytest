@@ -17,7 +17,7 @@ def browser_context_args():
 
 @pytest.fixture(scope="session")
 def browser_type_launch_args():
-    return {"headless": False} 
+    return {"headless": True} 
 
 @pytest.fixture(scope="function")
 def page(browser_type, browser_type_launch_args):
