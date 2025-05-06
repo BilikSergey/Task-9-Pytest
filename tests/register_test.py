@@ -24,25 +24,25 @@ def test_before_each(main_page, page):
         expect(main_page.sign_up_form).to_be_visible()
         allure.attach(page.screenshot(), name="sign_up_form_visible", attachment_type=allure.attachment_type.PNG)
 
-def test_verify_correct_register_and_delete(test_before_each, main_page, register_user, fake, page):
+def test_verify_correct_register_and_delete(test_before_each, main_page, fake, page):
     with allure.step("Register new user"):
-        register_user.register(fake.email(), fake.name())
+        main_page.register(fake.email(), fake.name())
         allure.attach(page.screenshot(), name="registered", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify account info form is visible"):
-        expect(register_user.form_account_info).to_be_visible()
+        expect(main_page.form_account_info).to_be_visible()
         allure.attach(page.screenshot(), name="account_info_form", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Add account data"):
-        register_user.add_data_about_account()
+        main_page.add_data_about_account()
         allure.attach(page.screenshot(), name="account_data_added", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify congratulations form is visible"):
-        expect(register_user.form_congrats).to_be_visible()
+        expect(main_page.form_congrats).to_be_visible()
         allure.attach(page.screenshot(), name="congrats_form", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Click Continue after registration"):
-        register_user.click_continue_button()
+        main_page.click_continue_button()
         allure.attach(page.screenshot(), name="clicked_continue", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify user is logged in"):
@@ -58,12 +58,12 @@ def test_verify_correct_register_and_delete(test_before_each, main_page, registe
         allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Click Continue after deletion"):
-        register_user.click_continue_button()
+        main_page.click_continue_button()
         allure.attach(page.screenshot(), name="continue_after_delete", attachment_type=allure.attachment_type.PNG)
 
-def test_verify_correct_email_for_registration(test_before_each, register_user, fake, user_data, page):
+def test_verify_correct_email_for_registration(test_before_each, main_page, register_user, fake, user_data, page):
     with allure.step("Attempt to register with existing email"):
-        register_user.register(user_data["email"], fake.name())
+        main_page.register(user_data["email"], fake.name())
         allure.attach(page.screenshot(), name="existing_email_attempt", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify 'email already exists' message appears"):

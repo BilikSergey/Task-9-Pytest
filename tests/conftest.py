@@ -31,42 +31,42 @@ def page(browser_type, browser_type_launch_args):
 
 @pytest.fixture
 def user_data():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["valid_user"]
 
 @pytest.fixture
 def url_for_pages():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["url"]
 
 @pytest.fixture
 def details_of_wares():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["details_of_wares"]
 
 @pytest.fixture
 def details_of_wares_2():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["details_of_wares_2"]
 
 @pytest.fixture
 def messages():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["messages"]
 
 @pytest.fixture
 def wares_of_polo():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["wares_of_polo"]
 
 @pytest.fixture
 def wares_of_h_and_m():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["wares_of_h&m"]
 
 @pytest.fixture
 def names_of_categories():
-    with open(Path(__file__).parent / "data/test_data.json") as f:
+    with open(Path(__file__).parent / "../data/test_data.json") as f:
         return json.load(f)["names_of_categories"]
 
 @pytest.fixture

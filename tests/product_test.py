@@ -150,7 +150,7 @@ def test_verify_product_quantity_in_cart(test_before_each, page, product_page, d
         expect(product_page.cart_quantity_1).to_contain_text("4")
         allure.attach(page.screenshot(), name="verify_quantity_in_cart", attachment_type=allure.attachment_type.PNG)
 
-def test_place_order_register_while_checkout(test_before_each, page, product_page, main_page, url_for_pages, register_user, fake, messages):
+def test_place_order_register_while_checkout(test_before_each, page, product_page, main_page, url_for_pages, fake, messages):
     with allure.step("Add product to cart and view cart"):
         product_page.click_add_to_cart_1()
         product_page.click_button_view_cart()
@@ -165,19 +165,19 @@ def test_place_order_register_while_checkout(test_before_each, page, product_pag
         allure.attach(page.screenshot(), name="login_register_button", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Register new user during checkout"):
-        register_user.register(fake.email(), fake.name())
+        main_page.register(fake.email(), fake.name())
         allure.attach(page.screenshot(), name="user_registration", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify account information form is visible"):
-        expect(register_user.form_account_info).to_be_visible()
+        expect(main_page.form_account_info).to_be_visible()
         allure.attach(page.screenshot(), name="account_info_form", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Add user account data"):
-        register_user.add_data_about_account()
+        main_page.add_data_about_account()
         allure.attach(page.screenshot(), name="account_data_added", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Click continue after registration"):
-        register_user.click_continue_button()
+        main_page.click_continue_button()
         allure.attach(page.screenshot(), name="continue_after_registration", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify user is logged in"):
@@ -213,23 +213,23 @@ def test_place_order_register_while_checkout(test_before_each, page, product_pag
         expect(main_page.form_account_deleted).to_be_visible()
         allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
 
-def test_place_order_register_before_checkout(test_before_each, page, product_page, main_page, url_for_pages, register_user, fake, messages):
+def test_place_order_register_before_checkout(test_before_each, page, product_page, main_page, url_for_pages, fake, messages):
     with allure.step("Click Sign Up/Login button to register new user"):
         main_page.click_button_sign_up_login()
         allure.attach(page.screenshot(), name="signup_login", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Register new user with email and name"):
-        register_user.register(fake.email(), fake.name())
+        main_page.register(fake.email(), fake.name())
         allure.attach(page.screenshot(), name="register_user", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify account info form is visible and add data"):
-        expect(register_user.form_account_info).to_be_visible()
-        register_user.add_data_about_account()
+        expect(main_page.form_account_info).to_be_visible()
+        main_page.add_data_about_account()
         allure.attach(page.screenshot(), name="account_info_form", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify congratulations message after successful registration"):
-        expect(register_user.form_congrats).to_be_visible()
-        register_user.click_continue_button()
+        expect(main_page.form_congrats).to_be_visible()
+        main_page.click_continue_button()
         allure.attach(page.screenshot(), name="registration_congrats", attachment_type=allure.attachment_type.PNG)
 
     with allure.step("Verify user is logged in"):
@@ -408,14 +408,14 @@ def test_add_to_cart_from_recommended_items(test_before_each, page, product_page
         expect(product_page.cart_quantity_1).to_contain_text("1")
         allure.attach(page.screenshot(), name="cart_after_recommended_add", attachment_type=allure.attachment_type.PNG)
 
-def test_verify_address_details_in_checkout_page(test_before_each, page, main_page, register_user, fake, product_page, url_for_pages, messages):
+def test_verify_address_details_in_checkout_page(test_before_each, page, main_page, fake, product_page, url_for_pages, messages):
     with allure.step("Register a new user and add product to cart"):
         main_page.click_button_sign_up_login()
-        register_user.register(fake.email(), fake.name())
-        expect(register_user.form_account_info).to_be_visible()
-        register_user.add_data_about_account()
-        expect(register_user.form_congrats).to_be_visible()
-        register_user.click_continue_button()
+        main_page.register(fake.email(), fake.name())
+        expect(main_page.form_account_info).to_be_visible()
+        main_page.add_data_about_account()
+        expect(main_page.form_congrats).to_be_visible()
+        main_page.click_continue_button()
         expect(main_page.form_with_entry_message).to_contain_text("Logged in as")
         product_page.click_add_to_cart_1()
         product_page.click_button_view_cart()
@@ -441,18 +441,18 @@ def test_verify_address_details_in_checkout_page(test_before_each, page, main_pa
         expect(main_page.form_account_deleted).to_be_visible()
         allure.attach(page.screenshot(), name="account_deleted", attachment_type=allure.attachment_type.PNG)
 
-def test_download_invoice_after_purchase_order(test_before_each, page, main_page, register_user, fake, product_page, url_for_pages, messages):
+def test_download_invoice_after_purchase_order(test_before_each, page, main_page, fake, product_page, url_for_pages, messages):
     with allure.step("Add product to cart and proceed to checkout"):
         product_page.click_add_to_cart_1()
         product_page.click_button_view_cart()
         expect(page).to_have_url(url_for_pages["cart"])
         product_page.click_button_proceed_to_checkout()
         product_page.click_button_login_register()
-        register_user.register(fake.email(), fake.name())
-        expect(register_user.form_account_info).to_be_visible()
-        register_user.add_data_about_account()
-        expect(register_user.form_congrats).to_be_visible()
-        register_user.click_continue_button()
+        main_page.register(fake.email(), fake.name())
+        expect(main_page.form_account_info).to_be_visible()
+        main_page.add_data_about_account()
+        expect(main_page.form_congrats).to_be_visible()
+        main_page.click_continue_button()
         expect(main_page.form_with_entry_message).to_contain_text("Logged in as")
         product_page.click_button_cart()
         product_page.click_button_proceed_to_checkout()
