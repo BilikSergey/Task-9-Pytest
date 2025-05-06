@@ -47,7 +47,7 @@ pipenv shell
 - Install pytest-playwright
 
 ```bash
-pipenv install pytest-playwrigh
+pipenv install pytest-playwright
 ```
 
 - Install browsers:
